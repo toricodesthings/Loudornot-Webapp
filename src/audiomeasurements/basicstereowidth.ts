@@ -20,23 +20,22 @@ export interface StereoWidthResult {
     const n     = left.length;               // same length for both
   
     /* ---- 2 · mid/side + correlation sums -------------------------------- */
-    let sumM2 = 0;        // Σ mid²
-    let sumS2 = 0;        // Σ side²
+    let sumL2 = 0;        // Σ L²
+    let sumR2 = 0;        // Σ R²
     let dotLR = 0;        // Σ L·R
   
     for (let i = 0; i < n; i++) {
       const l = left[i];
       const r = right[i];
-      const m = 0.5 * (l + r);     // Mid  = (L+R)/2
-      const s = 0.5 * (l - r);     // Side = (L–R)/2
   
-      sumM2 += m * m;
+      sumL2 += l * l;
+      sumR2 += r * r;
       dotLR += l * r;
     }
     
     // Calculate RMS values for proper correlation
-    const rmsL = Math.sqrt(sumM2 / n);
-    const rmsR = Math.sqrt(sumM2 / n); // Should use separate sum for R channel
+    const rmsL = Math.sqrt(sumL2 / n);
+    const rmsR = Math.sqrt(sumR2 / n);
     const icc = dotLR / (n * rmsL * rmsR);
   
     return { icc: Math.max(-1, Math.min(1, icc)) }; // Clamp to [-1, 1]

@@ -86,7 +86,7 @@ const LearnPage = () => {
 
             <div className={styles.section}>
                 <h1>LUFS Reference Values</h1>
-                <p>While there are no hard rules, streaming platforms typically normalize to -14 LUFS. Masters above this level will be turned down, while quieter masters may be turned up (depending on the platform's policy). In my personal opinion, -10 LUFS is enough for majority of tracks.</p>
+                <p>While there are no hard rules, streaming platforms typically normalize to -14 LUFS. Masters above this level will be turned down, while quieter masters may be turned up (depending on the platform&apos;s policy). In my personal opinion, -10 LUFS is enough for majority of tracks.</p>
                 
                 <table className={styles.referenceTable}>
                     <thead>

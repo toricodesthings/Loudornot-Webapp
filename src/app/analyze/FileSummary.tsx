@@ -33,6 +33,14 @@ interface StreamingService {
     targetLufs: number;
 }
 
+// Move TOOLTIP_CONTENT outside component to avoid dependency issues
+const TOOLTIP_CONTENT = {
+    lufs: "Loudness Units relative to Full Scale (LUFS) measures the perceived loudness of audio content. It's the international standard for measuring loudness in broadcast and streaming and uses the same scale as decibels. Values typically range from -8 LUFS (very loud) to -30 LUFS (very quiet). But, most streaming platforms normalize audio to around -14 LUFS to ensure consistent playback levels across different tracks. Therefore, going above -14 LUFS causes tracks to be turned down in volume.",
+    truePeak: "True Peak (dBTP) represents the maximum sample value that could occur after digital-to-analog conversion. Values above -1 dBTP may cause distortion on some playback systems. The suggested standard is to keep true peaks below -1 dBTP to ensure compatibility across all playback devices and leave headroom for lossy compression which increases the truepeak. Use a true peak limiter to ensure consistent true peak levels.",
+    bassContent: "Bass Content Ratio measures the proportion of low-frequency energy using the cutoff of 120 Hz relative to the total energy in the track. A ratio of 0.5 means bass frequencies contain 50% of the track's energy. This metric has no exact standard but can help identify if bass might be too heavy or light for the genre.",
+    stereoWidth: "Inter-Channel Correlation (ICC) quantifies the relationship between left and right channels in stereo audio. A value of 1.0 indicates mono (identical channels), 0.5-0.9 represents natural stereo width, 0.0-0.3 suggests wide stereo imaging. Negative values may indicate phase issues that could cause problems on mono playback systems and sound 'phasey' and incoherent.",
+} as const;
+
 const FileSummary: React.FC<FileSummaryProps> = ({
     file,
     lufsValue,
@@ -48,13 +56,6 @@ const FileSummary: React.FC<FileSummaryProps> = ({
     const [isTyping, setIsTyping] = React.useState<boolean>(false);
 
     // Constants
-    const TOOLTIP_CONTENT = {
-        lufs: "Loudness Units relative to Full Scale (LUFS) measures the perceived loudness of audio content. It's the international standard for measuring loudness in broadcast and streaming and uses the same scale as decibels. Values typically range from -8 LUFS (very loud) to -30 LUFS (very quiet). But, most streaming platforms normalize audio to around -14 LUFS to ensure consistent playback levels across different tracks. Therefore, going above -14 LUFS causes tracks to be turned down in volume.",
-        truePeak: "True Peak (dBTP) represents the maximum sample value that could occur after digital-to-analog conversion. Values above -1 dBTP may cause distortion on some playback systems. The suggested standard is to keep true peaks below -1 dBTP to ensure compatibility across all playback devices and leave headroom for lossy compression which increases the truepeak. Use a true peak limiter to ensure consistent true peak levels.",
-        bassContent: "Bass Content Ratio measures the proportion of low-frequency energy using the cutoff of 120 Hz relative to the total energy in the track. A ratio of 0.5 means bass frequencies contain 50% of the track's energy. This metric has no exact standard but can help identify if bass might be too heavy or light for the genre.",
-        stereoWidth: "Inter-Channel Correlation (ICC) quantifies the relationship between left and right channels in stereo audio. A value of 1.0 indicates mono (identical channels), 0.5-0.9 represents natural stereo width, 0.0-0.3 suggests wide stereo imaging. Negative values may indicate phase issues that could cause problems on mono playback systems and sound 'phasey' and incoherent.",
-    } as const;
-
     const COLORS = {
         veryHigh: 'rgba(var(--high-rate-misc-color-rgb), 0.8)',
         high: 'rgba(var(--attention-color-rgb), 0.8)',
@@ -155,7 +156,7 @@ const FileSummary: React.FC<FileSummaryProps> = ({
     }, [activeTooltip]);
 
     // Component for detailed tooltip information
-    const TooltipDetailView: React.FC<{ content: string }> = ({ content }) => (
+    const TooltipDetailView: React.FC = () => (
         <div className={analyzePageStyles.tooltipDetailView}>
             <p className={analyzePageStyles.tooltipDetailText}>
                 {displayedText}
@@ -282,7 +283,7 @@ const FileSummary: React.FC<FileSummaryProps> = ({
                 </div>
                 <div className={analyzePageStyles.lines}></div>
                 {activeTooltip ? (
-                    <TooltipDetailView content={TOOLTIP_CONTENT[activeTooltip as keyof typeof TOOLTIP_CONTENT]} />
+                    <TooltipDetailView />
                 ) : (
                     <div className={analyzePageStyles.featureContainer}>
                         {metrics.map((metric, index) => (
