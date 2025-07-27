@@ -1,42 +1,230 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font);
+}
+
+body, html {
+  width: 100vw;
+  overflow-x: hidden;
+  height: 100vh;
+}
+
+section::before {
+  background-attachment: fixed;
+}
+
+.app-container {
+  background-color: var(--bg-color);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.app-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: var(--bg);
+  z-index: 0;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Content area with proper spacing - remove unwanted margin */
+.app-content {
+  flex: 1;
+  width: 100%;
+  transition: padding-top 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+/* Only add padding when navbar is active in mobile view */
+body.navbar-mobile-active .app-content {
+  padding-top: clamp(86px, 15vh, 140px);
+}
+
+/*Ooo Colors*/
+:root {
+  --page-anim: 0.3s popIn cubic-bezier(0.2, 0, 0.32, 1) forwards;
+
+  --mainpage-bg: url('/mainpage/backgrounddark.webp');
+  --imagepage-bg: url('/imagepage/bgdark.webp');
+  --mediapage-bg: url('/mediapage/bgdark.webp');
+  --docpage-bg: url('/docpage/bgdark.webp');
+
+  --bg: url('/bgmainlight.png');
+
+  --bg-color: rgb(0, 0, 0);
+  --bg-color-rgb: 0, 0, 0;
+
+  --text-color: white;
+  --note-color: rgb(196, 196, 196);
+  --text-color-rgb: 255, 255, 255;
+  --invert-text-color: rgb(0, 0, 0);
+  --invert-color-reverse: 1;
+  --base-gradient: linear-gradient(
+    90deg,
+    rgb(158, 86, 246),   /* purple */
+    rgb(243, 64, 124),   /* magenta */
+    rgb(238, 89, 63),    /* red-orange */
+    rgb(232, 101, 210),  /* violet */
+    rgb(81, 201, 123),   /* refined green accent */
+    rgb(158, 86, 246)    /* purple */
+  );
+  --light-hover-gradient: linear-gradient(270deg, rgba(184, 66, 147, 0.7), rgba(184, 83, 217, 0.7));
+  
+ 
+  --text-shadow-color-rgb: 255, 245, 245;
+  /*Content*/
+  --title-text-color: #fffdff;
+  --contentborder-color-rgb: 245, 245, 245; /*white*/
+  --border-color-rgb: 160, 74, 174; /*purple, primary accent*/
+  --secondary-color-rgb: 200, 90, 180; /*warm red, secondary accent*/
+
+  --subtle-glow-rgb: 158, 85, 234; /*warm purple glow*/
+  --subtle-glow-rgb-2: 210, 75, 140; /*pink, glow*/
+  
+  --hover-state-rgb: 232, 101, 210; /*interaction*/
+  --highlight-rgb: 184, 94, 217; /*purple, highlight*/
+
+  --attention-color-rgb: 238, 65, 65; /*orange, attention*/
+}
+
+.dark {
+  --mainpage-bg: url('/mainpage/backgrounddark.webp') !important;
+  --imagepage-bg: url('/imagepage/bgdark.webp') !important;
+  --mediapage-bg: url('/mediapage/bgdark.webp') !important;
+  --docpage-bg: url('/docpage/bgdark.webp') !important;
+
+  --bg: url('/bgmaindark.png') !important;
+
+  --bg-color: rgb(0, 0, 0) !important;
+  --bg-color-rgb: 0, 0, 0 !important;
+
+  --text-color: white !important;
+  --text-color-rgb: 255, 255, 255 !important;
+  --note-color: rgb(196, 196, 196) !important;
+  --invert-text-color: rgb(0, 0, 0) !important;
+  --invert-color-reverse: 1 !important;
+
+
+  --base-gradient: linear-gradient(
+    90deg,
+    rgb(110, 151, 229), 
+    rgb(60, 197, 218),   
+    rgb(163, 91, 230),  
+    rgb(138, 123, 205), 
+    rgb(77, 111, 197),  
+    rgb(110, 151, 229)
+  );
+  --light-hover-gradient: linear-gradient(270deg, rgba(100, 149, 237, 0.8), rgba(163, 91, 230, 0.8)) !important;
+  --text-shadow-color-rgb: 255, 245, 245 !important;
+  --secondary-hover-gradient: linear-gradient(90deg, rgba(163, 91, 230, 0.5), rgba(222, 86, 197, 0.5)) !important;
+
+  --text-gradient: linear-gradient(90deg, rgba(163, 91, 230, 1), rgba(110, 151, 229, 1), rgba(77, 111, 197, 1));
+
+  /*Content*/
+  --title-text-color: #fffdff !important;
+  --contentborder-color-rgb: 245, 245, 245; /*white*/
+
+  --border-color-rgb: 110, 151, 229; 
+  --secondary-color-rgb: 110, 151, 240; /*warm red, secondary accent*/
+
+  --subtle-glow-rgb: 138, 123, 205;
+  --subtle-glow-rgb-2: 77, 111, 197; 
+
+  --hover-state-rgb: 184, 66, 160; /*interaction*/
+  
+  --highlight-rgb: 80, 187, 218; 
+
+  --attention-color-rgb: 222, 86, 197; 
+  --normal-color-rgb: 60, 230, 200; 
+}
+
+.light {
+  --mainpage-bg: url('/mainpage/backgroundlight.webp') !important;
+  --imagepage-bg: url('/imagepage/bg.webp') !important;
+  --mediapage-bg: url('/mediapage/bg.webp') !important;
+  --docpage-bg: url('/docpage/bg.webp') !important;
+
+  --bg: url('/bgmainlight.png') !important;
+
+  --bg-color: #ffffff !important;
+  --bg-color-rgb: 255, 255, 255 !important;
+  --text-color: #000000 !important;
+  --invert-text-color: rgb(255, 255, 255) !important;
+  --note-color: rgb(101, 101, 101) !important;
+  --text-color-rgb: 0, 0, 0 !important;
+  --invert-color-reverse: 0 !important;
+  --invert-color: 1 !important;
+
+  --base-gradient: linear-gradient(
+    90deg,
+    rgb(90, 151, 211),  
+    rgb(97, 174, 195),   
+    rgb(218, 118, 226), 
+    rgb(186, 159, 253),  
+    rgb(86, 166, 215),   
+    rgb(90, 151, 211)
+  );
+  --light-hover-gradient: linear-gradient(270deg, rgba(90, 151, 211, 0.4), rgba(218, 118, 226, 0.4)) !important;
+  --secondary-hover-gradient: linear-gradient(90deg, rgba(253, 159, 236, 0.5), rgba(220, 95, 248, 0.5)) !important;
+  --text-shadow-color-rgb: 26, 26, 26 !important;
+
+  --text-gradient: linear-gradient(90deg, rgba(218, 118, 226, 1), rgba(86, 166, 215, 1), rgba(90, 151, 211, 1));
+
+  /*Content*/
+  --title-text-color: #212326 !important;
+  --contentborder-color-rgb: 25, 25, 25; /*white*/
+
+  --border-color-rgb: 90, 151, 211;
+  --secondary-color-rgb: 150, 159, 253; 
+
+  --subtle-glow-rgb: 86, 166, 215; 
+  --subtle-glow-rgb-2: 186, 159, 253;
+
+  --hover-state-rgb: 218, 118, 226; /*interaction*/
+
+  --highlight-rgb: 180, 110, 239;
+
+  --attention-color-rgb: 236, 120, 180; /*orange, attention*/
+  --normal-color-rgb: 118, 220, 175; 
+  --high-rate-misc-color-rgb: 229, 130, 238;
+  --low-rate-misc-color-rgb: 147, 180, 233;
+
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.98) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
   }
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+@media (max-width: 768px), (orientation: portrait) {
+  .app-container {
+    position: relative;
+  }
+  
+  .app-container::before {
+    background-image: var(--bg) !important;
+    background-size: cover !important;
   }
 }

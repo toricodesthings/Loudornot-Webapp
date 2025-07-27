@@ -1,0 +1,116 @@
+.uploadButton {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem max(3vw, 3rem);
+  font-size: clamp(0.9rem, calc(1vw + 0.5vh), 2rem);
+  font-family: lexend;
+  background-color: inherit;
+  border-radius: 96px;
+  font-weight: 400;
+  color: var(--text-color);
+  box-shadow: 0 0 4px rgba(var(--border-color-rgb), 1),
+            0 0 4px rgba(var(--subtle-glow-rgb, 0.5));
+  cursor: pointer;
+  border: none;
+  outline: none;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.uploadButton svg {
+  position: absolute;
+  height: clamp(0.9rem, 3vw, 2rem);
+  aspect-ratio: 1;
+  fill: var(--text-color);
+  z-index: 1;
+  transition: all 1s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.uploadButton .arr-1 {
+  right: 16px;
+}
+
+.uploadButton .arr-2 {
+  left: -25%;
+}
+
+.uploadButton .circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background: var(--light-hover-gradient);
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.uploadButton .buttonText {
+  position: relative;
+  z-index: 1;
+  transform: translateX(-10px);
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.uploadButton:hover {
+  box-shadow: 0 0 8px rgba(var(--subtle-glow-rgb-2), 0.8),
+    inset 0 0 2px 1px rgba(var(--subtle-glow-rgb), 0.2);
+  color: var(--text-color);
+  border-radius: 12px;
+  transform: scale(1.15);
+}
+
+.uploadButton:hover .arr-1 {
+  right: -25%;
+}
+
+.uploadButton:hover .arr-2 {
+  left: 16px;
+}
+
+.uploadButton:hover .buttonText {
+  transform: translateX(10px);
+}
+
+.uploadButton:hover svg {
+  fill: var(--text-color);
+}
+
+.uploadButton:active {
+  transform: scale(0.98);
+}
+
+.uploadButton:hover .circle {
+  width: 50vw;
+  height: 50vw;
+  opacity: 1;
+}
+
+.uploadBtnSmall {
+  padding: 2vh 3vw;
+  min-width: 150px;
+  font-weight: 500;
+  border: 2px solid rgba(var(--secondary-color-rgb), 1);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.uploadBtnSmall .circle {
+  background-color: rgba(var(--hover-state-rgb), 0.9);
+  border-radius: 50%;
+}
+
+.uploadBtnSmall:hover {
+  box-shadow: 0 0 10px rgba(var(--subtle-glow-rgb-2), 0.5);
+  border-color: rgba(var(--hover-state-rgb), 0.9);
+}
+
+@media (max-width: 768px) and (orientation: portrait) {
+  .uploadBtnSmall {
+    flex-grow: 1;
+    width: 100;
+  }
+}

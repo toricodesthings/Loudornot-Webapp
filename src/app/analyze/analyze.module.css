@@ -1,0 +1,97 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    height: 100%;
+    justify-content: center;
+    margin: 0 auto;
+  }
+  
+  .uploadContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 65vh;
+    max-height: 90vh;
+    padding: 20px;
+    border-radius: 24px;
+    position: relative;
+    box-shadow: 0 0px 4px rgba(var(--border-color-rgb, 0.1)), 
+                0 0px 6px rgba(var(--subtle-glow-rgb, 0.1)),
+                inset 0 0 4px 2px rgba(var(--subtle-glow-rgb), 0.1);
+    transition: all 0.3s ease-out;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: var(--page-anim);
+  }
+  
+  .dashed {
+    border: 1px dashed rgba(var(--contentborder-color-rgb), 0.3);
+  }
+  
+  .uploadContainer:hover {
+    box-shadow: 0 0px 2px rgba(var(--border-color-rgb, 0.1)), 
+                0 0px 4px rgba(var(--subtle-glow-rgb, 0.2)),
+                inset 0 0 12px 2px rgba(var(--subtle-glow-rgb), 0.4);
+  }
+  
+  .uploadContainer.dragging {
+    border-color: rgba(var(--secondary-color-rgb), 0.8);
+  }
+  
+  .uploadContainer.error {
+    border-color: rgba(var(--attention-color-rgb), 1);
+    box-shadow: 0 0px 12px rgba(var(--attention-color-rgb), 0.3), 
+                inset 0 0 4px 2px rgba(var(--attention-color-rgb), 0.3);
+  }
+  
+  .uploadContainer.error:hover {
+    box-shadow: 0 0px 16px rgba(var(--attention-color-rgb), 0.5), 
+                inset 0 0 12px 2px rgba(var(--attention-color-rgb), 0.5);
+  }
+  
+  .dropOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(var(--secondary-color-rgb), 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 24px;
+    z-index: 2;
+  }
+  
+  .dropOverlay p {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  @keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+  }
+  
+  @media (max-width: 768px) and (orientation: portrait) {
+    .container {
+        width: 90%;
+    }
+
+    .uploadContainer {
+        width: 100%;
+        min-height: 80vh;
+        max-height: 90vh;
+    }
+
+  }

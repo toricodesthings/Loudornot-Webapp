@@ -1,0 +1,35 @@
+/* 3D Glassmorphic tooltip by kelvin - Modified */
+
+.tooltipContainer {
+  position: relative;
+  display: inline-block;
+  margin-left: 0.5rem;
+  pointer-events: auto;
+}
+
+.tooltipTrigger {
+  margin-top: 4px;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  border: 2px solid rgba(var(--border-color-rgb), 0.7);
+  background: transparent;
+  color: rgba(var(--text-color-rgb), 0.7);
+  font-size: 0.8rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-out;
+  /* Ensure button is clickable */
+  pointer-events: auto;
+  z-index: 5;
+  position: relative;
+}
+
+.tooltipTrigger:hover {
+  border-color: rgba(var(--highlight-rgb), 1);
+  color: rgba(var(--highlight-rgb), 1);
+  transform: scale(1.2);
+  box-shadow: 0 0 4px rgba(var(--subtle-glow-rgb), 0.3);
+}

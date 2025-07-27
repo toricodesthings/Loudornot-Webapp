@@ -1,0 +1,263 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    height: 100%;
+    justify-content: center;
+    margin: 0 auto;
+ 
+  }
+  
+  
+  .helpContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(var(--bg-color-rgb), 0.5);
+    width: 100%;
+    height: 80vh;
+    padding: 20px;
+    border-radius: 24px;
+    position: relative;
+    box-shadow: 0 0px 4px rgba(var(--border-color-rgb, 0.1)), 
+                0 0px 6px rgba(var(--subtle-glow-rgb, 0.1)),
+                inset 0 0 4px 2px rgba(var(--subtle-glow-rgb), 0.1);
+    transition: all 0.3s ease-out;
+    opacity: 0;
+    animation: var(--page-anim);
+    gap: 1rem;
+    overflow-y: auto;
+      /* Custom scrollbar styling */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(var(--border-color-rgb), 0.5) transparent;
+}
+
+.pageTitleContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+
+    justify-content: center;
+}
+
+.pageTitle {
+  font-size: clamp(1.2rem, calc(2vw + 1vh), 2.5rem);
+  font-weight: bold;
+  text-align: center;
+  color: var(--text-color);
+  text-shadow: 0 1px 2px rgba(var(--text-shadow-color-rgb), 0.1);
+  }
+
+/* Webkit browsers (Chrome, Safari, Edge) */
+.helpContainer::-webkit-scrollbar {
+  width: 8px;
+}
+
+.helpContainer::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 96px;
+  margin: 24px 0;
+}
+
+.helpContainer::-webkit-scrollbar-thumb {
+  background: rgba(var(--border-color-rgb), 0.5);
+  border-radius: 96px;
+  transition: background 0.3s ease;
+}
+
+.helpContainer::-webkit-scrollbar-thumb:hover {
+  background: rgba(var(--border-color-rgb), 0.8);
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    line-height: 1.4;
+}
+
+  .section h1{
+    font-size: clamp(1rem, calc(2vw + 2vh), 2rem);
+    background: var(--text-gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    font-weight: 600;
+  }
+
+  .section p {
+    font-size: clamp(0.8rem, calc(1vw + 1vh), 1.25rem);
+    color: var(--text-color);
+    font-weight: 300;
+  }
+
+  .section ul {
+    font-size: clamp(0.8rem, calc(1vw + 1vh), 1.25rem);
+    color: var(--text-color);
+    font-weight: 300;
+    margin: 0;
+    padding-left: 20px;
+    line-height: 1.4;
+  }
+
+  .section li {
+    margin-bottom: 0.5rem;
+  }
+
+  .section a {
+    color: rgba(var(--secondary-color-rgb), 1);
+    text-decoration: none;
+    text-shadow: 0px 0px 2px rgba(var(--subtle-glow-rgb-2), 0.8);
+    transition: color 0.3s ease-out;
+  }
+
+  .section a:hover {
+    color: var(--text-color);
+  }
+
+  .lines {
+    width: 10ch;
+    height: 4px;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(90deg, 
+      rgba(var(--highlight-rgb), 0.3) 0%, 
+      rgba(var(--border-color-rgb), 0.8) 50%, 
+      rgba(var(--highlight-rgb), 0.3) 100%
+    );
+    border-radius: 96px;
+  }
+
+  .buttonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    width: 80%;
+    min-height: 33%;
+    margin-left: auto;
+    animation: var(--page-anim);
+    margin-right: auto;
+}
+
+.tabButton {
+    padding: 0.5rem;
+    font-size: clamp(1rem, calc(2vw + 2vh), 1.75rem);
+    font-weight: 400;
+    border: 2px solid rgba(var(--contentborder-color-rgb), 0.7);
+    background: rgba(var(--bg-color-rgb), 0.3);
+    color: var(--text-color);
+    cursor: pointer;
+    font-family: lexend;
+    transition: border-color 0.3s ease-out, box-shadow 0.3s ease-out, transform 0.3s ease-out;
+    flex: 1;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+.tabButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--light-hover-gradient);
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+    z-index: -1;
+}
+
+.tabButton:first-child {
+    border-radius: 24px 0 0 24px;
+    border-right: none;
+}
+
+.tabButton:last-child {
+    border-radius: 0 24px 24px 0;
+    border-left: none;
+}
+
+
+
+.tabButton:hover {
+    border-color: rgba(var(--subtle-glow-rgb), 1);
+    box-shadow: 0 0 8px rgba(var(--subtle-glow-rgb), 0.5),
+    inset 0 0 16px 4px rgba(var(--subtle-glow-rgb), 0.25);
+}
+
+.tabButton:hover::before {
+    opacity: 1;
+}
+
+.backButton {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: clamp(1.2rem, calc(2vw + 2vh), 2.5rem);
+    height: clamp(1.2rem, calc(2vw + 2vh), 2.5rem);
+    border: 2px solid rgba(var(--attention-color-rgb), 0.7);
+    border-radius: 50%;
+    background: rgba(var(--bg-color-rgb), 0.5);
+    color: rgba(var(--attention-color-rgb), 1);
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.backButton:hover {
+    background: rgba(var(--attention-color-rgb), 0.1);
+    border-color: rgba(var(--attention-color-rgb), 1);
+    box-shadow: 0 0 8px rgba(var(--attention-color-rgb), 0.5);
+    transform: scale(1.1);
+}
+
+.referenceTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.5rem;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.referenceTable th {
+    background: rgba(var(--highlight-rgb), 0.3);
+    color: var(--text-color);
+    font-size: clamp(0.9rem, calc(2vw), 1.2rem);
+    font-weight: 600;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 2px solid rgba(var(--border-color-rgb), 0.25);
+    text-align: center;
+}
+
+.referenceTable td {
+    color: var(--text-color);
+    font-size: clamp(0.9rem, calc(2vw), 1.2rem);
+    font-weight: 300;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgba(var(--border-color-rgb), 0.25);
+    text-align: center;
+}
+
+.referenceTable tr:last-child td {
+    border-bottom: none;
+}
+
+.referenceTable tr:hover {
+    background: rgba(var(--subtle-glow-rgb), 0.1);
+}
+
+.referenceTable td:first-child {
+    font-weight: 600;
+    color: rgba(var(--secondary-color-rgb), 1);
+    font-family: monospace;
+}
