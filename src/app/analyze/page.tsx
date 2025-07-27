@@ -128,7 +128,6 @@ const AnalyzePage = () => {
                 filesExist={file !== null}
                 fileInputRef={fileInputRef}
                 maxFileSize={[500]}
-                maxFilesCount={1}
                 availableFormats={[['mp3', 'wav', 'ogg', 'flac', 'm4a', 'aac']]}
                 onButtonClick={handleButtonClick}
                 uploaderType="audio"

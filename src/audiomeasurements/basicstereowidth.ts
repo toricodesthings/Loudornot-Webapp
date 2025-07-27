@@ -31,7 +31,6 @@ export interface StereoWidthResult {
       const s = 0.5 * (l - r);     // Side = (L–R)/2
   
       sumM2 += m * m;
-      sumS2 += s * s;
       dotLR += l * r;
     }
     

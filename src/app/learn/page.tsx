@@ -45,7 +45,7 @@ const LearnPage = () => {
 
             <div className={styles.section}>
                 <h1>What is this tool for?</h1>
-                <p>Fundamental analysis of audio features and infographic on how much volume streaming platforms will "penalize" the given audio file. All analysis is done offline as the files are not uploaded but are digitally processed using libraries like ebur128-wasm to get an outlook on the audio data.This tool is written by me to give a better insight on how streaming platforms will affect the audio loudness through their normalization processes. This tool also aims to provide a general insight on the given audio file and how they stack up against normal reference values (roughly speaking).</p>
+                <p>Fundamental analysis of audio features and infographic on how much volume streaming platforms will &quot;penalize&quot; the given audio file. All analysis is done offline as the files are not uploaded but are digitally processed using libraries like ebur128-wasm to get an outlook on the audio data.This tool is written by me to give a better insight on how streaming platforms will affect the audio loudness through their normalization processes. This tool also aims to provide a general insight on the given audio file and how they stack up against normal reference values (roughly speaking).</p>
             </div>
 
             <div className={styles.section}>
@@ -55,7 +55,7 @@ const LearnPage = () => {
 
             <div className={styles.section}>
                 <h1>Will there a plugin version?</h1>
-                <p>Probabaly, and with better more real time data and insights. I'm planning a utility monitoring and basic DSP all-in-one with a pretty GUI. But, this is still just an idea.</p>
+                <p>Probabaly, and with better more real time data and insights. I&apos;m planning a utility monitoring and basic DSP all-in-one with a pretty GUI. But, this is still just an idea.</p>
             </div>
 
             <div className={styles.section}>
@@ -68,7 +68,7 @@ const LearnPage = () => {
 
             <div className={styles.section}>
                 <h1>Why do streaming services penalize loud masters?</h1>
-                <p>Mostly for the sake of convinience and avoiding users getting blasted by an extremely loud master following a very dynamic performance. The higher the level of your master, the more streaming service turn down to match their target loudness level, usually -14 LUFS. Going above almost has no use except for less dynamics, punch and "energy." Though, limiters, the usual final plugin of  masters aren't necessarily clean devices, therefore pushing a master louder can lead to colorization that might sound better musically. The general rule of thumb is, if it sounds good, it sounds good.</p>
+                <p>Mostly for the sake of convinience and avoiding users getting blasted by an extremely loud master following a very dynamic performance. The higher the level of your master, the more streaming service turn down to match their target loudness level, usually -14 LUFS. Going above almost has no use except for less dynamics, punch and &quot;energy.&quot; Though, limiters, the usual final plugin of  masters aren&apos;t necessarily clean devices, therefore pushing a master louder can lead to colorization that might sound better musically. The general rule of thumb is, if it sounds good, it sounds good.</p>
             </div>
         </div>
     );
@@ -127,7 +127,7 @@ const LearnPage = () => {
 
             <div className={styles.section}>
                 <h1>General Mastering Tips</h1>
-                <p>The loudness war used to be a problem. But due to normalization, how loud a master is not as important anymore. Instead, it's better to focus on dynamics and musical balance rather than just loudness. Even with normalization, some tracks will still sound "Louder" than others. Two reasons why: A track with a lot of low end energy compared to high end is going to be sound not as loud due our ear's sensitivity to bass frequencies. A well-balanced master at -14 LUFS often sounds better than a completely crushed master at -8 LUFS after normalization. Dynamics is also very important, a song that is very loud throughout, with very little change in dynamics, even mastered to -10 LUFS for instance, will sound a lot less loud (when normalized) compared to a master that has both soft parts and loud parts. Technically, the integrated loudness will be the same, but the contrast will be perceived as way louder choruses or way quieter bridges.</p>
+                <p>The loudness war used to be a problem. But due to normalization, how loud a master is not as important anymore. Instead, it&apos;s better to focus on dynamics and musical balance rather than just loudness. Even with normalization, some tracks will still sound &quot;Louder&quot; than others. Two reasons why: A track with a lot of low end energy compared to high end is going to be sound not as loud due our ear&apos;s sensitivity to bass frequencies. A well-balanced master at -14 LUFS often sounds better than a completely crushed master at -8 LUFS after normalization. Dynamics is also very important, a song that is very loud throughout, with very little change in dynamics, even mastered to -10 LUFS for instance, will sound a lot less loud (when normalized) compared to a master that has both soft parts and loud parts. Technically, the integrated loudness will be the same, but the contrast will be perceived as way louder choruses or way quieter bridges.</p>
             </div>
         </div>
     );

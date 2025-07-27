@@ -7,7 +7,6 @@ interface FileUploaderProps {
   filesExist: boolean;
   fileInputRef: RefObject<HTMLInputElement | null>;
   maxFileSize: number[];
-  maxFilesCount: number;
   availableFormats: string[][];
   onButtonClick: () => void;
   uploaderType?: string;
@@ -25,7 +24,6 @@ const formatSize = (size: number) =>
  */
 const FileUploader: React.FC<FileUploaderProps> = ({
   maxFileSize,
-  maxFilesCount,
   availableFormats,
   onButtonClick,
   noteLabels = [],
