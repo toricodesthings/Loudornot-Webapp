@@ -1,15 +1,48 @@
 'use client';
 
 import React, { useState, useRef } from 'react';
-import { useDropzone } from 'react-dropzone';
+import dynamic from 'next/dynamic';
 import styles from './analyze.module.css';
 import FileUploader from './FileUploader';
 import Loading from './Loading';
 import FileSummary from './FileSummary';
 import ErrorDisplay from './ErrorDisplay';
-import { analyzeLUFS, analyzeTP } from '../../audiomeasurements/measurefunction';
-import { analyzeBassHeavinessMeyda } from '../../audiomeasurements/additionmeasurefunction';
-import { analyzeStereoWidth } from '../../audiomeasurements/basicstereowidth';
+
+// Disable SSR for this component
+export const runtime = 'edge'
+
+// Dynamic imports for audio analysis functions to prevent SSR issues
+const useAudioAnalysis = () => {
+    const [analyzeLUFS, setAnalyzeLUFS] = useState<any>(null);
+    const [analyzeTP, setAnalyzeTP] = useState<any>(null);
+    const [analyzeBassHeavinessMeyda, setAnalyzeBassHeavinessMeyda] = useState<any>(null);
+    const [analyzeStereoWidth, setAnalyzeStereoWidth] = useState<any>(null);
+
+    React.useEffect(() => {
+        // Dynamic imports to prevent SSR issues
+        const loadAnalysisFunctions = async () => {
+            try {
+                const [lufsModule, tpModule, bassModule, stereoModule] = await Promise.all([
+                    import('../../audiomeasurements/measurefunction'),
+                    import('../../audiomeasurements/measurefunction'),
+                    import('../../audiomeasurements/additionmeasurefunction'),
+                    import('../../audiomeasurements/basicstereowidth')
+                ]);
+
+                setAnalyzeLUFS(() => lufsModule.analyzeLUFS);
+                setAnalyzeTP(() => tpModule.analyzeTP);
+                setAnalyzeBassHeavinessMeyda(() => bassModule.analyzeBassHeavinessMeyda);
+                setAnalyzeStereoWidth(() => stereoModule.analyzeStereoWidth);
+            } catch (error) {
+                console.error('Failed to load analysis functions:', error);
+            }
+        };
+
+        loadAnalysisFunctions();
+    }, []);
+
+    return { analyzeLUFS, analyzeTP, analyzeBassHeavinessMeyda, analyzeStereoWidth };
+};
 
 const AnalyzePage = () => {
     // File management state
@@ -22,8 +55,15 @@ const AnalyzePage = () => {
     const [error, setError] = useState<string | null>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
+    const { analyzeLUFS, analyzeTP, analyzeBassHeavinessMeyda, analyzeStereoWidth } = useAudioAnalysis();
+
     // Analyze LUFS for the given file
     const analyzeFile = async (selectedFile: File) => {
+        if (!analyzeLUFS || !analyzeTP || !analyzeBassHeavinessMeyda || !analyzeStereoWidth) {
+            setError('Audio analysis tools are still loading. Please try again.');
+            return;
+        }
+
         setIsAnalyzing(true);
         setError(null);
         setLufsValue(null);
@@ -71,11 +111,23 @@ const AnalyzePage = () => {
         }
     };
 
-    const {
-        getRootProps,
-        getInputProps,
-        isDragActive
-    } = useDropzone({
+    // Dynamic import for dropzone to prevent SSR issues
+    const [useDropzone, setUseDropzone] = useState<any>(null);
+
+    React.useEffect(() => {
+        const loadDropzone = async () => {
+            try {
+                const dropzoneModule = await import('react-dropzone');
+                setUseDropzone(() => dropzoneModule.useDropzone);
+            } catch (error) {
+                console.error('Failed to load dropzone:', error);
+            }
+        };
+        loadDropzone();
+    }, []);
+
+    // Configure dropzone only when available
+    const dropzoneConfig = useDropzone ? useDropzone({
         onDrop,
         accept: {
             'audio/*': []
@@ -83,7 +135,13 @@ const AnalyzePage = () => {
         noClick: true,
         multiple: false,
         maxSize: 500 * 1024 * 1024 // 500MB
-    });
+    }) : { getRootProps: () => ({}), getInputProps: () => ({}), isDragActive: false };
+
+    const {
+        getRootProps,
+        getInputProps,
+        isDragActive
+    } = dropzoneConfig;
 
     // Handle file selection from button
     const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -167,4 +225,8 @@ const AnalyzePage = () => {
     );
 };
 
-export default AnalyzePage;
+// Export with no SSR
+export default dynamic(() => Promise.resolve(AnalyzePage), {
+    ssr: false,
+    loading: () => <Loading />
+});
