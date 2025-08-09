@@ -9,14 +9,14 @@
   width: 100%;
   align-items: center;
   flex-direction: column;
-  gap: 5vh;
+  gap: 6vh;
   display: flex;
   flex-grow: 0;
   justify-content: center;
 }
 
 .instructTitle {
-  font-size: clamp(1rem, calc(2vw + 2vh), 2rem);
+  font-size: clamp(1.25rem, calc(3vw + 2vh), 2rem);
   font-weight: 500;
   text-align: center;
   display: flex;
@@ -26,7 +26,7 @@
 }
 
 .dragDropNote {
-  font-size: 1rem;
+  font-size: clamp(0.9rem, calc(0.9vw + 1vh), 2rem);
   font-weight: 300;
   color: var(--text-color);
   text-align: center;

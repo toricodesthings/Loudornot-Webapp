@@ -40,7 +40,7 @@ export async function analyzeLUFS(file: File): Promise<number> {
 
 /* ---------- True‑peak (dBTP, single programme value) ---------- */
 export async function analyzeTP(file: File): Promise<number> {
-  // TEMPORARY: Add delay for testing
+  // Testing only delay
   await delay(TESTING_DELAY_MS);
 
   const arrayBuffer  = await file.arrayBuffer();
@@ -54,7 +54,6 @@ export async function analyzeTP(file: File): Promise<number> {
   }
 
   if (channels === 2) {
-    /* wasm returns a single number for stereo true peak */
     return ebur128_true_peak_stereo(
       rate,
       audioBuffer.getChannelData(0),
@@ -73,5 +72,5 @@ export async function analyzeTP(file: File): Promise<number> {
 }
 
 // TEMPORARY: Add delay for testing
-const TESTING_DELAY_MS = 100;
+const TESTING_DELAY_MS = 0;
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));

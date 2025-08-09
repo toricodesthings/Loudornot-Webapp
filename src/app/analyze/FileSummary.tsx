@@ -52,7 +52,6 @@ const FileSummary: React.FC<FileSummaryProps> = ({
     onAnalyzeAnother
 }) => {
     
-    // Add state for tooltip management
     const [activeTooltip, setActiveTooltip] = React.useState<string | null>(null);
     const [displayedText, setDisplayedText] = React.useState<string>('');
     const [isTyping, setIsTyping] = React.useState<boolean>(false);
@@ -73,12 +72,6 @@ const FileSummary: React.FC<FileSummaryProps> = ({
         { name: 'Amazon', targetLufs: -14 },
         { name: 'Deezer', targetLufs: -15 }
     ];
-
-    const FLEX_CENTER_STYLE = { 
-        display: 'flex', 
-        alignItems: 'center', 
-        justifyContent: 'center' 
-    } as const;
 
     // Utility functions
     const formatFileSize = (bytes: number): string => 
@@ -180,7 +173,7 @@ const FileSummary: React.FC<FileSummaryProps> = ({
             <span className={analyzePageStyles.values}>
                 {value.toFixed(precision)}{unit && ` ${unit}`}
             </span>
-            <div style={FLEX_CENTER_STYLE}>
+            <div className={analyzePageStyles.labels}>
                 <span className={analyzePageStyles.subtext}>{label}</span>
                 <div className={tooltipStyles.tooltipContainer}>
                     <button 

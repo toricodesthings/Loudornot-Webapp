@@ -5,7 +5,6 @@
   justify-content: space-between;
   background: none;
   z-index: 1;
-  margin-bottom: 1.5vh;
 }
 
 .loudornot-maincontainer {
@@ -16,7 +15,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8vh;
+  gap: 10vh;
   flex-direction: column;
   margin: 0 10%;
   box-sizing: border-box;
@@ -33,7 +32,7 @@
 .title-gradient {
   position: relative;
   background-image: var(--base-gradient);
-  font-size: clamp(1rem, calc(6vw + 4vh), 6rem);
+  font-size: clamp(2rem, calc(7vw + 4vh), 6rem);
   background-clip: text;
   font-weight: bold;
   -webkit-background-clip: text;
@@ -61,22 +60,28 @@
   color: var(--text-color);
   margin: 0;
   text-shadow: 0 1px 1px rgba(var(--text-shadow-color-rgb), 0.2);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .loudornot-container {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
+  width: 80vw;
 }
 
 .loudornot-btnlink {
   color: inherit;
   text-decoration: none;
+  width: 20%;
 }
 
 .loudornot-container span {
-  padding: clamp(0.7rem, calc(1vw + 1vh), 1rem) clamp(0.9rem, 10vw, 3rem);
+  padding: clamp(0.7rem, calc(1vw + 1vh), 1rem) 0;
   font-weight: 300;
   display: flex;
   align-items: center;
@@ -267,5 +272,31 @@
 
 /* Aurora fade-in animation */
 .aurora-fade-in {
-  transition: opacity 0.8s ease-out;
+  transition: opacity 0.6s ease-out;
+}
+
+@media (max-width: 768px) and (orientation: portrait) {
+  .loudornot-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .loudornot-maincontainer {
+    gap: 6vh;
+    margin: 0 5%;
+  }
+
+  .loudornot-container {
+   width: 85vw;
+  }
+
+  .loudornot-btnlink {
+    color: inherit;
+    text-decoration: none;
+    width: 100%;
+  }
+  
+
 }

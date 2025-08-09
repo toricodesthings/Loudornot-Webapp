@@ -5,7 +5,6 @@ export interface StereoWidthResult {
   export async function analyzeStereoWidth(
     file: File,
   ): Promise<StereoWidthResult> {
-    /* ---- 1 · decode ------------------------------------------------------ */
     const ab  = await file.arrayBuffer();
     const ctx = new AudioContext();
     const buf = await ctx.decodeAudioData(ab);
@@ -18,8 +17,7 @@ export interface StereoWidthResult {
     const left  = buf.getChannelData(0);
     const right = buf.getChannelData(1);
     const n     = left.length;               // same length for both
-  
-    /* ---- 2 · mid/side + correlation sums -------------------------------- */
+
     let sumL2 = 0;        // Σ L²
     let sumR2 = 0;        // Σ R²
     let dotLR = 0;        // Σ L·R
@@ -33,7 +31,6 @@ export interface StereoWidthResult {
       dotLR += l * r;
     }
     
-    // Calculate RMS values for proper correlation
     const rmsL = Math.sqrt(sumL2 / n);
     const rmsR = Math.sqrt(sumR2 / n);
     const icc = dotLR / (n * rmsL * rmsR);

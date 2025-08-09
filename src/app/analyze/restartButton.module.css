@@ -31,7 +31,7 @@ background: var(--light-hover-gradient);
   width: 2.45em;
   border-radius: 96px;
   box-shadow: 0.1em 0.1em 0.6em 0.2em rgba(var(--subtle-glow-rgb-2), 0.8);
-  right: 0.25em;
+  right: 0.225em;
   transition: all 0.3s;
 }
 

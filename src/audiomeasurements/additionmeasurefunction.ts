@@ -36,7 +36,7 @@ export async function analyzeBassHeavinessMeyda(
   }
 
   /* ---------- 2 · configure Meyda -------------------------------------- */
-  Meyda.sampleRate = buf.sampleRate;  // tell Meyda the real SR
+  Meyda.sampleRate = buf.sampleRate; 
   Meyda.bufferSize = fftSize;
   Meyda.windowingFunction = 'hanning';  
 
@@ -50,17 +50,16 @@ export async function analyzeBassHeavinessMeyda(
   for (let pos = 0; pos + fftSize <= mono.length; pos += hopSize) {
     const frame = mono.subarray(pos, pos + fftSize);
 
-    // <-- the static extract() call lives on Meyda, not on an analyzer
     const ps = Meyda.extract('powerSpectrum', frame) as number[] | null;
     if (!ps) continue;
 
     for (let bin = 0; bin < ps.length; bin++) {
-      const e = ps[bin];               // already magnitude²
+      const e = ps[bin];             
       totalEnergy += e;
       if (bin <= lowBinMax) lowEnergy += e;
     }
   }
 
-  const ratio = lowEnergy / totalEnergy || 0; // Bass to full‑band energy ratio
+  const ratio = lowEnergy / totalEnergy || 0;
   return returnDb ? 10 * Math.log10(ratio) : ratio; // dB conversion of linear ratio
 }

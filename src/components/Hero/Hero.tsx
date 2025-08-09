@@ -63,7 +63,7 @@ export default function HomeClient() {
             Loudornot
           </h1>
           <h1 className={`${styles["title-norm"]} ${styles["text-animate"]} ${showAnimations ? styles["in-view"] : ''}`}>
-            Audio Features Analyzer & Loudness Penalty Meter
+            Audio Analyzer & Loudness Penalty Meter
           </h1>
         </div>
         <div className={styles["loudornot-panel"]}>

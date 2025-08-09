@@ -37,7 +37,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
     <div className={uploaderInstructionStyles.uploadInstruction}>
       <div className={uploaderInstructionStyles.mainInstruction}>
         <h2 className={uploaderInstructionStyles.instructTitle}>
-          {filesExist ? 'File Selected - Choose Another to Replace' : 'Please Select a File for Analysis'}
+          {filesExist ? 'File Selected - Choose Another to Replace' : 'Select a File for Analysis'}
         </h2>
 
         <button className={uploadButtonStyles.uploadButton} onClick={onButtonClick}>
@@ -54,7 +54,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
         </button>
 
         <p className={uploaderInstructionStyles.dragDropNote}>
-          Or Drag and Drop Audio File
+          Or Drag and Drop
         </p>
       </div>
       <p className={uploaderInstructionStyles.uploaderNote}>
