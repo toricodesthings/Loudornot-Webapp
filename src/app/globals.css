@@ -60,47 +60,54 @@ body.navbar-mobile-active .app-content {
 :root {
   --page-anim: 0.3s popIn cubic-bezier(0.2, 0, 0.32, 1) forwards;
 
-  --mainpage-bg: url('/mainpage/backgrounddark.webp');
-  --imagepage-bg: url('/imagepage/bgdark.webp');
-  --mediapage-bg: url('/mediapage/bgdark.webp');
-  --docpage-bg: url('/docpage/bgdark.webp');
+  --mainpage-bg: url('/mainpage/backgrounddark.webp') !important;
+  --imagepage-bg: url('/imagepage/bgdark.webp') !important;
+  --mediapage-bg: url('/mediapage/bgdark.webp') !important;
+  --docpage-bg: url('/docpage/bgdark.webp') !important;
 
-  --bg: url('/bgmainlight.png');
+  --bg: url('/bgmaindark.png') !important;
 
-  --bg-color: rgb(0, 0, 0);
-  --bg-color-rgb: 0, 0, 0;
+  --bg-color: rgb(0, 0, 0) !important;
+  --bg-color-rgb: 0, 0, 0 !important;
 
-  --text-color: white;
-  --note-color: rgb(196, 196, 196);
-  --text-color-rgb: 255, 255, 255;
-  --invert-text-color: rgb(0, 0, 0);
-  --invert-color-reverse: 1;
+  --text-color: white !important;
+  --text-color-rgb: 255, 255, 255 !important;
+  --note-color: rgb(196, 196, 196) !important;
+  --invert-text-color: rgb(0, 0, 0) !important;
+  --invert-color-reverse: 1 !important;
+
+
   --base-gradient: linear-gradient(
     90deg,
-    rgb(158, 86, 246),   /* purple */
-    rgb(243, 64, 124),   /* magenta */
-    rgb(238, 89, 63),    /* red-orange */
-    rgb(232, 101, 210),  /* violet */
-    rgb(81, 201, 123),   /* refined green accent */
-    rgb(158, 86, 246)    /* purple */
+    rgb(110, 151, 229), 
+    rgb(60, 197, 218),   
+    rgb(163, 91, 230),  
+    rgb(138, 123, 205), 
+    rgb(77, 111, 197),  
+    rgb(110, 151, 229)
   );
-  --light-hover-gradient: linear-gradient(270deg, rgba(184, 66, 147, 0.7), rgba(184, 83, 217, 0.7));
-  
- 
-  --text-shadow-color-rgb: 255, 245, 245;
+  --light-hover-gradient: linear-gradient(270deg, rgba(100, 149, 237, 0.8), rgba(163, 91, 230, 0.8)) !important;
+  --text-shadow-color-rgb: 255, 245, 245 !important;
+  --secondary-hover-gradient: linear-gradient(90deg, rgba(163, 91, 230, 0.5), rgba(222, 86, 197, 0.5)) !important;
+
+  --text-gradient: linear-gradient(90deg, rgba(163, 91, 230, 1), rgba(110, 151, 229, 1), rgba(77, 111, 197, 1));
+
   /*Content*/
-  --title-text-color: #fffdff;
+  --title-text-color: #fffdff !important;
   --contentborder-color-rgb: 245, 245, 245; /*white*/
-  --border-color-rgb: 160, 74, 174; /*purple, primary accent*/
-  --secondary-color-rgb: 200, 90, 180; /*warm red, secondary accent*/
 
-  --subtle-glow-rgb: 158, 85, 234; /*warm purple glow*/
-  --subtle-glow-rgb-2: 210, 75, 140; /*pink, glow*/
+  --border-color-rgb: 110, 151, 229; 
+  --secondary-color-rgb: 110, 151, 240; /*warm red, secondary accent*/
+
+  --subtle-glow-rgb: 138, 123, 205;
+  --subtle-glow-rgb-2: 77, 111, 197; 
+
+  --hover-state-rgb: 184, 66, 160; /*interaction*/
   
-  --hover-state-rgb: 232, 101, 210; /*interaction*/
-  --highlight-rgb: 184, 94, 217; /*purple, highlight*/
+  --highlight-rgb: 80, 187, 218; 
 
-  --attention-color-rgb: 238, 65, 65; /*orange, attention*/
+  --attention-color-rgb: 222, 86, 197; 
+  --normal-color-rgb: 60, 230, 200; 
 }
 
 .dark {

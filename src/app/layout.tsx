@@ -3,6 +3,7 @@ import './globals.css';
 import { Lexend } from 'next/font/google';
 import { ReactNode } from 'react';
 import { ThemeProvider } from '@/context/ThemeContext';
+import { Analytics } from "@vercel/analytics/react"
 import ThemeSwitch from '@/components/ThemeSwitch/ThemeSwitch';
 
 const lexend = Lexend({
@@ -23,6 +24,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className={lexend.className}>
+        <Analytics />
         <div className='app-container'>
         <ThemeProvider>
           <div className='app-content'>
